@@ -1,9 +1,9 @@
-package com.example.backend.Config;
+package com.restaurant.backend.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.example.backend.websocket.IoTWebSocketHandler;
+import com.restaurant.backend.websocket.IoTWebSocketHandler;
 
 @Configuration
 @EnableWebSocket

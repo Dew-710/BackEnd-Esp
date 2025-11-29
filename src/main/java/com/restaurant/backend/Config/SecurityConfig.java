@@ -1,4 +1,4 @@
-package com.example.backend.Config;
+package com.restaurant.backend.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

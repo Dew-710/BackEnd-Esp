@@ -1,12 +1,11 @@
-package com.example.backend.Controller;
+package com.restaurant.backend.Controller;
 
-import com.example.backend.websocket.IoTWebSocketHandler;
+import com.restaurant.backend.websocket.IoTWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.io.InputStream;
-import java.util.Base64;
 
 @RestController
 @RequestMapping("/api")
