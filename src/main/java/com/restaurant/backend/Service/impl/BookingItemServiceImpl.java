@@ -14,34 +14,30 @@ public class BookingItemServiceImpl implements BookingItemService {
 
     private final BookingItemRepository bookingItemRepository;
 
+
     @Override
     public List<BookingItem> findAll() {
-        return bookingItemRepository.findAll();
+        return List.of();
     }
 
     @Override
     public BookingItem findById(Long id) {
-        return bookingItemRepository.findById(id).orElseThrow(() -> new RuntimeException("Booking item not found"));
+        return null;
     }
 
     @Override
     public BookingItem create(BookingItem item) {
-        return bookingItemRepository.save(item);
+        return null;
     }
 
     @Override
     public BookingItem update(Long id, BookingItem item) {
-        BookingItem existing = findById(id);
-        existing.setBooking(item.getBooking());
-        existing.setMenuItem(item.getMenuItem());
-        existing.setQuantity(item.getQuantity());
-        existing.setPrice(item.getPrice());
-        return bookingItemRepository.save(existing);
+        return null;
     }
 
     @Override
     public void delete(Long id) {
-        bookingItemRepository.deleteById(id);
+
     }
 
     @Override
@@ -51,6 +47,11 @@ public class BookingItemServiceImpl implements BookingItemService {
 
     @Override
     public BookingItem getBookingItemByBookingId(long bookingId) {
+        return null;
+    }
+
+    @Override
+    public List<BookingItem> getByBooking(long bookingId) {
         return null;
     }
 }

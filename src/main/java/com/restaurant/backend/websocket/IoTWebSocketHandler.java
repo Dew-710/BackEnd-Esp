@@ -61,12 +61,46 @@ public class IoTWebSocketHandler extends TextWebSocketHandler {
             System.out.println("📷 Original image: " + img.getWidth() + "x" + img.getHeight());
 
             // Resize cho ST7735S (128x160)
-            int targetW = 160;
-            int targetH = 128;
+            // Resize ảnh không bị méo – giữ nguyên tỷ lệ
+            int lcdW = 160;
+            int lcdH = 128;
 
-            Image scaled = img.getScaledInstance(targetW, targetH, Image.SCALE_SMOOTH);
-            BufferedImage resized = new BufferedImage(targetW, targetH, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g = resized.createGraphics();
+// Tính tỷ lệ ảnh gốc
+            double imgRatio = (double) img.getWidth() / img.getHeight();
+            double lcdRatio = (double) lcdW / lcdH;
+
+            int newW, newH;
+
+// Nếu ảnh rộng hơn so với màn
+            if (imgRatio > lcdRatio) {
+                newW = lcdW;
+                newH = (int) (lcdW / imgRatio);
+            } else {
+                newH = lcdH;
+                newW = (int) (lcdH * imgRatio);
+            }
+
+// Tạo ảnh scale đúng tỷ lệ
+            Image scaled = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+
+// Tạo canvas LCD
+            BufferedImage canvas = new BufferedImage(lcdW, lcdH, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = canvas.createGraphics();
+
+// Nền đen (hoặc đổi màu nếu muốn)
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, lcdW, lcdH);
+
+// Căn giữa ảnh
+            int x = (lcdW - newW) / 2;
+            int y = (lcdH - newH) / 2;
+
+            g.drawImage(scaled, x, y, null);
+            g.dispose();
+
+// Gán lại để encode JPEG
+            BufferedImage resized = canvas;
+
 
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);

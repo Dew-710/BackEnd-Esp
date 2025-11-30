@@ -14,35 +14,39 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
 
+
     @Override
     public List<Category> findAll() {
-        return categoryRepository.findAll();
+        return List.of();
     }
 
     @Override
     public Category findById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
+        return null;
     }
 
     @Override
     public Category create(Category category) {
-        return categoryRepository.save(category);
+        return null;
     }
 
     @Override
     public Category update(Long id, Category category) {
-        Category existing = findById(id);
-        existing.setName(category.getName());
-        return categoryRepository.save(existing);
+        return null;
     }
 
     @Override
     public void delete(Long id) {
-        categoryRepository.deleteById(id);
+
     }
 
     @Override
     public Category GetCategoryById(long id) {
         return null;
+    }
+
+    @Override
+    public List<Category> getAll() {
+        return List.of();
     }
 }

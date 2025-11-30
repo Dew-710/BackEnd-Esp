@@ -2,17 +2,16 @@ package com.restaurant.backend.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity
-@jakarta.persistence.Table(name = "tables")
+@Table(name = "tables")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Table {
+public class RestaurantTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +20,10 @@ public class Table {
     @Column(name = "table_name", nullable = false, length = 50)
     private String tableName;
 
-    @Column(nullable = false)
-    private Integer capacity;
+    private int capacity;
 
     @Column(length = 20)
-    private String status; // AVAILABLE, etc.
+    private String status;
 
     @OneToMany(mappedBy = "table")
     private List<Booking> bookings;

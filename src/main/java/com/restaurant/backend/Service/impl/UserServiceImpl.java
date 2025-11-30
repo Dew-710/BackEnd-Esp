@@ -14,50 +14,51 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        return List.of();
     }
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return null;
     }
 
     @Override
     public User create(User user) {
-        return userRepository.save(user);
+        return null;
     }
+
     @Override
     public User update(Long id, User user) {
-        User existing = findById(id);
-        existing.setUsername(user.getUsername());
-        existing.setPassword(user.getPassword());
-        existing.setFullName(user.getFullName());
-        existing.setPhone(user.getPhone());
-        existing.setEmail(user.getEmail());
-        existing.setRole(user.getRole());
-        existing.setCreatedAt(user.getCreatedAt());
-        return userRepository.save(existing);
+        return null;
     }
 
     @Override
     public void delete(Long id) {
-        userRepository.deleteById(id);
+
+    }
+
+
+    @Override
+    public List<User> getAll() {
+        return List.of();
+    }
+    @Override
+    public User login(String username, String password) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Email không tồn tại"));
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Mật khẩu không đúng");
+        }
+
+        return user;
     }
 
     @Override
-    public User createCustomer(User user) {
-        return null;
-    }
-
-    @Override
-    public <List> User GetAllCustomers() {
-        return null;
-    }
-
-    @Override
-    public User GetCustomerById(long id) {
+    public User findByUsername(String Username) {
         return null;
     }
 }

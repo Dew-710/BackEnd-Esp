@@ -2,7 +2,6 @@ package com.restaurant.backend.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -19,14 +18,12 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private com.restaurant.backend.Entity.Order order;
 
-    @Column(precision = 12, scale = 2)
     private BigDecimal amount;
 
-    @Column(length = 50)
     private String method;
 
     @Column(name = "paid_at")

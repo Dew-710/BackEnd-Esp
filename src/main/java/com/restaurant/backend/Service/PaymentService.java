@@ -16,4 +16,6 @@ public interface PaymentService {
     void delete(Long id);
 
     String processPayment(long orderId, double amount);
+
+    Payment getByOrder(Long orderId);
 }

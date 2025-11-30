@@ -1,8 +1,8 @@
 package com.restaurant.backend.Service.impl;
 
-import com.restaurant.backend.Entity.Table;
+import com.restaurant.backend.Entity.RestaurantTable;
 import com.restaurant.backend.Repository.RestaurantTableRepository;
-import com.restaurant.backend.Service.TableService;
+import com.restaurant.backend.Service.RestaurantTableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,41 +10,48 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TableServiceImpl implements TableService {
+public class TableServiceImpl implements RestaurantTableService {
 
     private final RestaurantTableRepository tableRepository;
 
+
     @Override
-    public List<Table> findAll() {
-        return tableRepository.findAll();
+    public List<RestaurantTable> findAll() {
+        return List.of();
     }
 
     @Override
-    public Table findById(Long id) {
-        return tableRepository.findById(id).orElseThrow(() -> new RuntimeException("Table not found"));
+    public RestaurantTable findById(Long id) {
+        return null;
     }
 
     @Override
-    public Table create(Table table) {
-        return tableRepository.save(table);
+    public RestaurantTable create(RestaurantTable table) {
+        return null;
     }
 
     @Override
-    public Table update(Long id, Table table) {
-        Table existing = findById(id);
-        existing.setTableName(table.getTableName());
-        existing.setCapacity(table.getCapacity());
-        existing.setStatus(table.getStatus());
-        return tableRepository.save(existing);
+    public RestaurantTable update(Long id, RestaurantTable table) {
+        return null;
     }
 
     @Override
     public void delete(Long id) {
-        tableRepository.deleteById(id);
+
     }
 
     @Override
-    public Table GetTablebyId(long id) {
+    public RestaurantTable GetTablebyId(long id) {
+        return null;
+    }
+
+    @Override
+    public List<RestaurantTable> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public RestaurantTable updateStatus(Long id, String status) {
         return null;
     }
 }

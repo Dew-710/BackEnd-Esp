@@ -2,7 +2,6 @@ package com.restaurant.backend.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -18,17 +17,15 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "order_id")
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "menu_id")
+    @ManyToOne
+    @JoinColumn(name = "menu_id", nullable = false)
     private MenuItem menuItem;
 
-    @Column(nullable = false)
-    private Integer quantity;
+    private int quantity;
 
-    @Column(precision = 10, scale = 2)
     private BigDecimal price;
 }

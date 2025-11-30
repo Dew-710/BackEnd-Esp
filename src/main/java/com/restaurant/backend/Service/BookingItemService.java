@@ -17,4 +17,6 @@ public interface BookingItemService {
 
     BookingItem getBookingItemById(long id);
     BookingItem getBookingItemByBookingId(long bookingId);
+
+    List<BookingItem> getByBooking(long bookingId);
 }

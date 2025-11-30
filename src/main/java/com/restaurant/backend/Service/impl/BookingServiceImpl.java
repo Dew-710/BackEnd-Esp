@@ -14,37 +14,35 @@ public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
 
+
+    @Override
+    public List<Booking> getAllBookings() {
+        return List.of();
+    }
+
     @Override
     public List<Booking> findAll() {
-        return bookingRepository.findAll();
+        return List.of();
     }
 
     @Override
     public Booking findById(Long id) {
-        return bookingRepository.findById(id).orElseThrow(() -> new RuntimeException("Booking not found"));
+        return null;
+    }
+
+    @Override
+    public Booking createBooking(Booking booking) {
+        return null;
     }
 
     @Override
     public Booking create(Booking booking) {
-        return bookingRepository.save(booking);
+        return null;
     }
 
     @Override
-    public Booking update(Long id, Booking booking) {
-        Booking existing = findById(id);
-        existing.setCustomer(booking.getCustomer());
-        existing.setTable(booking.getTable());
-        existing.setDate(booking.getDate());
-        existing.setTime(booking.getTime());
-        existing.setGuests(booking.getGuests());
-        existing.setNote(booking.getNote());
-        existing.setStatus(booking.getStatus());
-        return bookingRepository.save(existing);
-    }
-
-    @Override
-    public void delete(Long id) {
-        bookingRepository.deleteById(id);
+    public Booking updateBooking(Long id, Booking booking) {
+        return null;
     }
 
     @Override
@@ -54,6 +52,21 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking getBookingByCustomerId(long customerId) {
+        return null;
+    }
+
+    @Override
+    public Booking assignTable(Long id, Long tableId) {
+        return null;
+    }
+
+    @Override
+    public void deleteBooking(Long id) {
+
+    }
+
+    @Override
+    public Booking updateStatus(Long id, String confirmed) {
         return null;
     }
 }

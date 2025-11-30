@@ -48,4 +48,9 @@ public class PaymentServiceImpl implements PaymentService {
     public String processPayment(long orderId, double amount) {
         return "";
     }
+
+    @Override
+    public Payment getByOrder(Long orderId) {
+        return null;
+    }
 }

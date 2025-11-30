@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.io.InputStream;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -15,12 +16,14 @@ public class ImageController {
     private final IoTWebSocketHandler ws;
 
     @PostMapping("/send-image/{filename}")
-    public ResponseEntity<String> send(@PathVariable String filename) {
+    public ResponseEntity<?> send(@PathVariable String filename) {
         try {
             // Load ảnh từ classpath
             ClassPathResource resource = new ClassPathResource("static/images/" + filename);
             if (!resource.exists()) {
-                return ResponseEntity.badRequest().body("❌ File not found in static/images/: " + filename);
+                return ResponseEntity.badRequest().body(
+                        Map.of("message", "File not found in static/images/: " + filename)
+                );
             }
 
             try (InputStream inputStream = resource.getInputStream()) {
@@ -28,10 +31,14 @@ public class ImageController {
                 ws.broadcastImageBytes(data);
             }
 
-            return ResponseEntity.ok("✅ Image sent successfully to ESP32: " + filename);
+            return ResponseEntity.ok(
+                    Map.of("message", "Image sent successfully to ESP32: " + filename)
+            );
         } catch (Exception ex) {
             ex.printStackTrace();
-            return ResponseEntity.status(500).body("⚠️ Error: " + ex.getMessage());
+            return ResponseEntity.status(500).body(
+                    Map.of("message", "Error: " + ex.getMessage())
+            );
         }
     }
 }

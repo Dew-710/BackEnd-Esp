@@ -18,4 +18,8 @@ public interface MenuItemService {
     MenuItem getMenuItemById(long id);
     MenuItem getMenuItemByCategoryId(long categoryId);
     MenuItem getMenuItemByStatus(String status);
+
+    List<MenuItem> getAll();
+
+    List<MenuItem> getByCategory(Long categoryId);
 }

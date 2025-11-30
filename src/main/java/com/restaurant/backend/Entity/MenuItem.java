@@ -2,7 +2,6 @@ package com.restaurant.backend.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,13 +21,12 @@ public class MenuItem {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "image_url", length = 255)
+    @Column(name = "image_url")
     private String imageUrl;
 
     @ManyToOne
@@ -36,7 +34,7 @@ public class MenuItem {
     private Category category;
 
     @Column(length = 20)
-    private String status; // AVAILABLE, etc.
+    private String status;
 
     @OneToMany(mappedBy = "menuItem")
     private List<BookingItem> bookingItems;

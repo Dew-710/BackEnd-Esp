@@ -1,9 +1,9 @@
 package com.restaurant.backend.Repository;
 
-import com.restaurant.backend.Entity.Table;
+import com.restaurant.backend.Entity.RestaurantTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RestaurantTableRepository extends JpaRepository<Table, Long> {
+public interface    RestaurantTableRepository extends JpaRepository<RestaurantTable, Long> {
 }

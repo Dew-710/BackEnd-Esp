@@ -1,8 +1,9 @@
 package com.restaurant.backend.Entity;
 
+
+
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,33 +20,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, unique = true, length = 50)
     private String username;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String password;
 
     @Column(name = "full_name", length = 100)
     private String fullName;
 
-    @Column(length = 20)
     private String phone;
-
-    @Column(length = 100)
     private String email;
 
-    @Column(length = 20, nullable = false)
-    private String role; // ADMIN / STAFF / CUSTOMER
+    @Column(nullable = false)
+    private String role;   // ADMIN / STAFF / CUSTOMER
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    // USER → BOOKING
     @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
+    // USER → ORDERS (AS CUSTOMER)
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    private List<Order> customerOrders;
 
+    // USER → ORDERS (AS STAFF)
     @OneToMany(mappedBy = "staff")
     private List<Order> handledOrders;
 }

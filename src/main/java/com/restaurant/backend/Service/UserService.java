@@ -15,8 +15,9 @@ public interface UserService {
 
     void delete(Long id);
 
-    User createCustomer(User user);
-    <List> User GetAllCustomers();
-    User GetCustomerById(long id);
+    List<User> getAll();
 
+    User login(String email, String password);
+
+    User findByUsername (String Username);
 }
